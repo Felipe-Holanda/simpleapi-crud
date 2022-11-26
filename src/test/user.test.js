@@ -46,7 +46,7 @@ users.push(userNotAdm)
 describe("Testes rota POST /users", () => {
   test("Testando criação de usuário com um corpo correto", async () => {
     const response = await request(app).post("/users").send(userAdm);
-    
+
     expect(response.status).toBe(201);
     expect(response.body).toHaveProperty("name");
     expect(response.body).toHaveProperty("email");
@@ -116,7 +116,7 @@ describe("Testando rota GET /users", () => {
 });
 
 describe("Testando rota GET /users/profile", () => {
-  test("Testando listagem do perfil de usuário", async () => { 
+  test("Testando listagem do perfil de usuário", async () => {
     const response = await request(app)
       .get("/users/profile")
       .set("Authorization", `Bearer ${tokenNotAdm}`);
@@ -158,7 +158,7 @@ describe("Testando rota PATCH /users/<uuid>", () => {
     expect(response.body).toHaveProperty("message");
   });
 
-  test("Testando atualização do próprio usuário sem permissão de ADM", async () => { 
+  test("Testando atualização do próprio usuário sem permissão de ADM", async () => {
     const response = await request(app)
       .patch(`/users/8643c029-04f9-448c-9b9b-630ad89db8b3`)
       .send(updateNotAdm)
